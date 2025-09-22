@@ -1,22 +1,38 @@
-import React, { useState } from 'react';
-import { NavLink } from 'react-router';
+import { NavLink } from 'react-router-dom';
 import Logo from '../assets/logo.png';
 import { TiThMenuOutline } from "react-icons/ti";
+import { useAuth } from '../provider/AuthProvider';
+import { useState } from 'react';
+import Swal from 'sweetalert2';
+
 
 const Navbar = () => {
+     const { user, logOut } = useAuth();
      const [isOpen, setIsOpen] = useState(false);
 
-    const isLoggedIn = false;
+    const links =
+     [
+  { path: "/", label: "Home" },
+  { path: "/biodata", label: "Biodatas" },
+  { path: "/about", label: "About Us" },
+  { path: "/contact", label: "Contact Us" },
+  ...(user ? [{ path: "/dashboard", label: "Dashboard" }] : [])
+];
 
-    const links = [
-    { path: "/", label: "Home" },
-    { path: "/biodatas", label: "Biodatas" },
-    { path: "/about", label: "About Us" },
-    { path: "/contact", label: "Contact Us" },
-  ];
+  const handleLogout = async () => {
+    try {
+      await logOut();
+      Swal.fire(
+        "Success", 
+        "Log Out Successful !", "success");
+    } catch (err) {
+      Swal.fire("Error", err.message, "error");
+    }
+  };
+
     return (
         <div>
-            <nav className=" shadow-md fixed w-full top-0 left-0 z-50">
+            <nav className=" shadow-md w-full  z-50">
       <div className="max-w-7xl mx-auto px-4 py-3 flex justify-between items-center">
         
         {/* Logo + Name */}
@@ -41,19 +57,26 @@ const Navbar = () => {
             </NavLink>
           ))}
 
-          {/* Login / Logout Btn */}
-          {isLoggedIn ? (
-            <button className="bg-red-500 text-white px-4 py-2 rounded-lg hover:bg-red-600">
-              Logout
-            </button>
-          ) : (
-            <NavLink
-              to="/login"
-              className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-purple-400"
-            >
-              Login
-            </NavLink>
-          )}
+          {user ? (
+              <>
+                <div className="w-10 rounded-full border-2">
+                {/* <img src= alt="" /> */}
+                <img className="w-10 h-10 p-1 rounded-full ring-2 ring-gray-300 dark:ring-gray-500" src={user.photoURL} alt="Bordered avatar"></img>
+              </div>
+                <button
+                  onClick={handleLogout}
+                  className="bg-purple-400 text-white px-4 py-2 rounded-lg hover:bg-indigo-500"
+                >
+                  Logout
+                </button>
+              </>
+            ) : (
+              <NavLink
+                to="/auth/login"
+                className="bg-indigo-500 text-white px-4 py-2 rounded-lg hover:bg-purple-400">
+                Login
+              </NavLink>
+            )}
         </div>
 
         {/* Mobile Menu Button */}
@@ -83,19 +106,25 @@ const Navbar = () => {
             </NavLink>
           ))}
 
-          {isLoggedIn ? (
-            <button className="w-full bg-red-500 text-white px-4 py-2 mt-2 rounded-lg hover:bg-red-600">
-              Logout
-            </button>
-          ) : (
-            <NavLink
-              to="/login"
-              onClick={() => setIsOpen(false)}
-              className="w-full bg-indigo-500 text-white px-2 py-2 mt-2 rounded-lg hover:bg-purple-400"
-            >
-              Login
-            </NavLink>
-          )}
+          {user ? (
+              <button
+                onClick={() => {
+                  handleLogout();
+                  setIsOpen(false);
+                }}
+                className="w-full bg-purple-400 text-white px-4 py-2 mt-2 rounded-lg hover:bg-indigo-500"
+              >
+                Logout
+              </button>
+            ) : (
+              <NavLink
+                to="/auth/login"
+                onClick={() => setIsOpen(false)}
+                className="w-full bg-indigo-500 text-white px-2 py-2 mt-2 rounded-lg hover:bg-purple-400"
+              >
+                Login
+              </NavLink>
+            )}
         </div>
       )}
     </nav>

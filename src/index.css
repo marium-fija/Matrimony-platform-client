@@ -1,7 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Urbanist:ital,wght@0,100..900;1,100..900&display=swap');
 
 @import "tailwindcss";
-
+@import "flowbite/src/themes/default";
+@plugin "flowbite/plugin";               
+@source "../node_modules/flowbite";
 
 body{
   @apply bg-slate-900 text-white;

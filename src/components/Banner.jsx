@@ -7,7 +7,7 @@ import slider3 from '../assets/Slider-3.png'
 
 const Banner = () => {
     return (
-        <div className='mt-20 '>
+        <div className=' '>
             <Carousel autoPlay={true} infiniteLoop={true} showThumbs={false} showArrows={true}>
                 <div>
                     <img src={slider1} />
