@@ -1,12 +1,53 @@
-# React + Vite
+# SoulKnot (Matrimony Platform) (MERN Assignment 12, Category 14)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SoulKnot is a modern and user-friendly MERN stack web application designed to help people find their perfect life partner. Users can create, edit, and browse biodatas with advanced filters. Premium members enjoy exclusive features like viewing contact information, and Admins manage the entire platform to keep it secure and authentic.
 
-Currently, two official plugins are available:
+--------------------------------------------------
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Live Site Link : 
 
-## Expanding the ESLint configuration
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+----------------------------------------------------
+
+## Admin Credentials :  
+- **Email:** admin@gmail.com  
+- **Password:** 123456  
+
+----------------------------------------------------
+
+## Features :  
+
+1. Fully responsive design for mobile, tablet, and desktop.  
+2. Authentication system with Firebase (Email/Password + Google login).  
+3. Secure user login with JWT token.  
+4. Users can create, edit, and view their biodata.  
+5. Biodatas can be filtered by age, gender, and division.  
+6. Premium members can view contact information.  
+7. Stripe integration for secure payment while requesting contact info.  
+8. Users can add biodatas to favourites and manage them.  
+9. Admin Dashboard to manage users, premium approvals, and contact requests.  
+10. Success Story section with real couple stories and reviews.  
+11. Tanstack Query used for smooth and efficient data fetching.  
+12. CRUD operations with notifications using SweetAlert/Toast.  
+
+----------------------------------------------------
+
+## Technologies Used  
+
+- **Frontend:** React.js, Tailwind CSS, FlowBite  
+- **Backend:** Node.js, Express.js  
+- **Database:** MongoDB  
+- **Authentication:** Firebase, JWT  
+- **Data Fetching:** Tanstack Query  
+- **Payment Gateway:** Stripe  
+- **Others:** Axios, SweetAlert  
+
+
+
+
+ 
+
+
+
+
+
