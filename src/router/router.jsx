@@ -66,7 +66,7 @@ export const router = createBrowserRouter([
                  element: <EditBiodata></EditBiodata> 
             },
             {
-                path: "view-biodata",
+                path: "view-biodata/:email",
                 element: <ViewBiodata></ViewBiodata>
             },
             {

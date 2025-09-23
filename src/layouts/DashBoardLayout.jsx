@@ -7,7 +7,7 @@ import Swal from 'sweetalert2';
 import { useAuth } from '../provider/AuthProvider';
 
 const DashBoardLayout = () => {
-    const { logOut} = useAuth();
+    const { user, logOut} = useAuth();
     const navigate = useNavigate();
     const [isOpen, setIsOpen] = useState(false);
 
@@ -69,7 +69,7 @@ const DashBoardLayout = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to="/dashboard/view-biodata" onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
+              <NavLink to={`/dashboard/view-biodata/${user.email}`} onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
               }>
                 <FaIdCard /> View Biodata
               </NavLink>
@@ -111,6 +111,7 @@ const DashBoardLayout = () => {
         {/* === Main Content === */}
         <main className="flex-1 bg-slate-900 text-white p-6">
           <Outlet />
+          <Footer></Footer>
         </main>
       </div>
     </div>
