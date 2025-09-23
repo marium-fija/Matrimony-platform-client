@@ -6,12 +6,12 @@ import { getAuth } from "firebase/auth";
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyCSzs9wDGbKfY4ga0yDVIGn9KIF-eCzixo",
-  authDomain: "matrimony-platform-auth.firebaseapp.com",
-  projectId: "matrimony-platform-auth",
-  storageBucket: "matrimony-platform-auth.firebasestorage.app",
-  messagingSenderId: "33443235327",
-  appId: "1:33443235327:web:36418e10eab44677fd13ca"
+  apiKey:import.meta.env.VITE_apiKey ,
+  authDomain:import.meta.env.VITE_authDomain ,
+  projectId:import.meta.env.VITE_projectId ,
+  storageBucket:import.meta.env.VITE_storageBucket ,
+  messagingSenderId:import.meta.env.VITE_messagingSenderId ,
+  appId:import.meta.env.VITE_appId ,
 };
 
 // Initialize Firebase
