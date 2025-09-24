@@ -69,7 +69,7 @@ const DashBoardLayout = () => {
               </NavLink>
             </li>
             <li>
-              <NavLink to={`/dashboard/view-biodata/${user.email}`} onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
+              <NavLink to={`/dashboard/view-biodata/email/${user.email}`} onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
               }>
                 <FaIdCard /> View Biodata
               </NavLink>
