@@ -15,6 +15,11 @@ import ContactRequest  from "../UserDashBoard/ContactRequest";
 import FavouritesBiodata from "../UserDashBoard/FavouritesBiodata";
 import GotMarried from "../UserDashBoard/GotMarried";
 import PrivateRoute from "../provider/PrivateRoute";
+import AdminRoute from "../provider/AdminRoute";
+import AdminHome from "../pages/AdminDashBoard/AdminHome";
+import ManageUsers from "../pages/AdminDashBoard/ManageUsers";
+import PremiumRequests from "../pages/AdminDashBoard/PremiumRequests";
+import AdminContact from "../pages/AdminDashBoard/AdminContact";
 
 export const router = createBrowserRouter([
     {
@@ -81,6 +86,30 @@ export const router = createBrowserRouter([
                  path: "got-married",
                  element: <GotMarried></GotMarried> 
             },
+        ]
+    },
+    {
+        path: "/dashboard/admin",
+        element: <AdminRoute>
+            <DashBoardLayout></DashBoardLayout>
+        </AdminRoute>,
+        children: [
+            {
+                index: true,
+                element: <AdminHome></AdminHome>
+            },
+            {
+                path: "users",
+                element: <ManageUsers></ManageUsers>
+            },
+            {
+                path: "premium",
+                element: <PremiumRequests></PremiumRequests>
+            },
+            {
+                path: "contact",
+                element: <AdminContact></AdminContact>
+            }
         ]
     },
 ])

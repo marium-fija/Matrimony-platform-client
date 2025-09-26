@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import useAxios from '../hooks/useAxios';
-import { useNavigate } from 'react-router';
+import { Link, useNavigate } from 'react-router';
 import { GoHeart } from "react-icons/go";
+import { useAuth } from '../provider/AuthProvider';
 
 
 const divisions = [
@@ -17,6 +18,7 @@ const divisions = [
 const Biodata = () => {
     const axios = useAxios();
   const navigate = useNavigate();
+  const {user} = useAuth();
 
   const [biodatas, setBiodatas] = useState([]);
   const [filteredBiodatas, setFilteredBiodatas] = useState([]);
@@ -58,13 +60,32 @@ const Biodata = () => {
 
   // Navigate to view profile (private)
   const handleViewProfile = (email) => {
-    const isLoggedIn = localStorage.getItem("token"); // Example: check token
-    if (!isLoggedIn) {
+     
+    if (!user) {
       navigate("/auth/login");
     } else {
       navigate(`/dashboard/view-biodata/email/${email}`);
     }
   };
+
+  const [favorites, setFavorites] = useState(() => {
+  // Load from localStorage
+  const saved = localStorage.getItem("favorites");
+  return saved ? JSON.parse(saved) : [];
+});
+
+const toggleFavorite = (biodata) => {
+  let updatedFavorites;
+  if (favorites.some(fav => fav.biodataId === biodata.biodataId)) {
+    // remove from favorites
+    updatedFavorites = favorites.filter(fav => fav.biodataId !== biodata.biodataId);
+  } else {
+    updatedFavorites = [...favorites, biodata];
+  }
+  setFavorites(updatedFavorites);
+  localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+};
+
     return (
         <div>
             <div className="flex flex-col md:flex-row p-6 gap-6">
@@ -102,8 +123,8 @@ const Biodata = () => {
             className="w-full mt-2 p-2 rounded-2xl bg-transparent"
           >
             <option value="">All</option>
-            <option value="Male">Male</option>
-            <option value="Female">Female</option>
+            <option className='text-black' value="Male">Male</option>
+            <option className='text-black' value="Female">Female</option>
           </select>
         </div>
 
@@ -118,7 +139,7 @@ const Biodata = () => {
           >
             <option value="">All</option>
             {divisions.map((d) => (
-              <option key={d} value={d}>{d}</option>
+              <option key={d} className='text-black' value={d}>{d}</option>
             ))}
           </select>
         </div>
@@ -157,12 +178,15 @@ const Biodata = () => {
             </div>
              <div className='flex justify-between px-4'>
                 <button
-              onClick={() => handleViewProfile(biodata.contactEmail)}
+               onClick={() => handleViewProfile(biodata.contactEmail)}
               className="mt-3 bg-indigo-500 hover:bg-pink-400 text-white px-4 py-2 rounded-2xl"
             >
               View Profile
             </button>
-            <button className='text-rose-700 p-3 rounded-2xl'><GoHeart size={25}/></button>
+            <button
+              onClick={() => toggleFavorite(biodata)}
+  className={`p-3 rounded-full ${favorites.some(fav => fav.biodataId === biodata.biodataId) ? "bg-red-500" : "bg-transparent"}`}
+            ><GoHeart size={25} className='text-white'/></button>
              </div>
           </div>
         ))}
