@@ -48,6 +48,7 @@ if (!email || !password) {
 
   // Observe user
   useEffect(() => {
+    setLoading(true);
     const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
       setUser(currentUser);
       setLoading(false);

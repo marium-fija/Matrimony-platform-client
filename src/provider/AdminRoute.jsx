@@ -4,8 +4,9 @@ import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 
 
+
 const AdminRoute = ({ children }) => {
-  const { user, loading } = useAuth();
+  const { user, loading: authLoading } = useAuth();
   const axios = useAxios();
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
@@ -16,6 +17,7 @@ const AdminRoute = ({ children }) => {
      let isMounted = true;
 
   if (user?.email) {
+     setAdminLoading(true);
     axios.get(`/users/admin/${user.email}`)
       .then(res => {
         if (isMounted) {
@@ -27,7 +29,7 @@ const AdminRoute = ({ children }) => {
           if (isMounted) setAdminLoading(false);
         });
   } else {
-    setAdminLoading(false);
+   setAdminLoading(true); 
   }
 
  return () => {
@@ -36,7 +38,7 @@ const AdminRoute = ({ children }) => {
 
 }, [user, axios]);
 
-  if (loading || adminLoading) {
+  if (authLoading || adminLoading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
   }
 

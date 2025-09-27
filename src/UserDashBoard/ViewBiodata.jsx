@@ -5,13 +5,15 @@ import { GiBodyHeight } from "react-icons/gi";
 import useAxios from '../hooks/useAxios';
 import { useParams } from 'react-router';
 import { GoHeart } from "react-icons/go";
+import { useAuth } from '../provider/AuthProvider';
+import Swal from 'sweetalert2';
 
 const ViewBiodata = () => {
 
   const { email } = useParams();
   console.log(email);
-
   const axios = useAxios();
+  const { user } = useAuth();
   const [biodata, setBiodata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -51,6 +53,22 @@ const ViewBiodata = () => {
     }
     setFavorites(updatedFavorites);
     localStorage.setItem("favorites", JSON.stringify(updatedFavorites));
+  };
+
+  //  Handle premium request
+  const handlePremiumRequest = async () => {
+    try {
+      const res = await axios.patch(`/users/request-premium/${user?.email}`);
+      if (res.data.modifiedCount > 0) {
+        Swal.fire("Success!", "Your premium request has been sent.", "success");
+      } else {
+        Swal.fire("Note!", "You already requested premium.", "info");
+      }
+    } catch (error) {
+      console.log(error);
+      
+      Swal.fire("Error!", "Failed to send request.", "error");
+    }
   };
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
@@ -102,7 +120,9 @@ const ViewBiodata = () => {
 
            <div className='flex items-center gap-5'>
              {/* Premium Button */}
-            <button className="mt-3 px-6 py-2 bg-indigo-500 text-white rounded-xl shadow hover:bg-pink-400">
+            <button
+            onClick={handlePremiumRequest} 
+            className="mt-3 px-6 py-2 bg-indigo-500 text-white rounded-xl shadow hover:bg-pink-400">
               Get Premium
             </button>
             <button

@@ -71,7 +71,7 @@ const Register = () => {
         <input {...register("email", { required: true })} placeholder="Email" className="input input-bordered w-full border rounded-2xl p-3" />
         {errors.email && <p className="text-red-500">Email is required</p>}
 
-        <input {...register("password", { required: true, minLength: 6 })} type="password" placeholder="Password" className="input input-bordered w-full border rounded-2xl p-3" />
+        <input {...register("password", { required: true, minLength: 6 })} type="password" placeholder="Password" className="input input-bordered bg-transparent w-full border rounded-2xl p-3" />
         {errors.password && <p className="text-red-500">Password must be at least 6 characters</p>}
 
         
