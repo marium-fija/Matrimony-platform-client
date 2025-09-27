@@ -4,11 +4,17 @@ import { TiThMenuOutline } from "react-icons/ti";
 import { useAuth } from '../provider/AuthProvider';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
+import useUserRole from '../hooks/useUserRole';
 
 
 const Navbar = () => {
      const { user, logOut } = useAuth();
+     const { role, roleLoading } = useUserRole();
      const [isOpen, setIsOpen] = useState(false);
+
+      if (roleLoading) {
+    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+  }
 
     const links =
      [
@@ -16,7 +22,9 @@ const Navbar = () => {
   { path: "/biodata", label: "Biodatas" },
   { path: "/about", label: "About Us" },
   { path: "/contact", label: "Contact Us" },
-  ...(user ? [{ path: "/dashboard", label: "Dashboard" }] : [])
+   ...(user ? [
+      { path: role === "admin" ? "/dashboard/admin/home" : "/dashboard/home", label: "Dashboard" }
+    ] : [])
 ];
 
   const handleLogout = async () => {

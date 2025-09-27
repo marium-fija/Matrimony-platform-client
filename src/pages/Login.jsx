@@ -1,22 +1,25 @@
 import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useAuth } from "../provider/AuthProvider";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import login from '../assets/login.jpg';
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
-  const { loginUser, googleLogin } = useAuth();
-  const navigate = useNavigate();
   const { register, handleSubmit, formState: { errors } } = useForm();
+  const { loginUser, googleLogin } = useAuth();
+  const location = useLocation();
+    const navigate = useNavigate();
+    const from = location.state?.from || '/';
 
+  
   const onSubmit = async (data) => {
     console.log(data);
     
     try {
       await loginUser(data.email, data.password);
       Swal.fire("Success", "Login Successful!", "success");
-      navigate("/");
+      navigate(from);
     } catch (error) {
       Swal.fire("Error", error.message, "error");
     }
@@ -26,7 +29,7 @@ const Login = () => {
     try {
       await googleLogin();
       Swal.fire("Success", "Google Login Successful!", "success");
-      navigate("/");
+      navigate(from);
     } catch (error) {
       Swal.fire("Error", error.message, "error");
     }

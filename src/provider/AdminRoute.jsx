@@ -3,25 +3,38 @@ import { useAuth } from "../provider/AuthProvider";
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
 
+
 const AdminRoute = ({ children }) => {
   const { user, loading } = useAuth();
+  const axios = useAxios();
   const [isAdmin, setIsAdmin] = useState(false);
   const [adminLoading, setAdminLoading] = useState(true);
-  const axiosSecure = useAxios();
+ 
   const location = useLocation();
 
   useEffect(() => {
-    if (user?.email) {
-      axiosSecure.get(`/users/admin/${user.email}`)
-        .then(res => {
-          setIsAdmin(res.data?.admin === true);
-          setAdminLoading(false);
-        })
-        .catch(() => setAdminLoading(false));
-    } else {
-      setAdminLoading(false);
-    }
-  }, [user, axiosSecure]);
+     let isMounted = true;
+
+  if (user?.email) {
+    axios.get(`/users/admin/${user.email}`)
+      .then(res => {
+        if (isMounted) {
+            setIsAdmin(res.data?.admin === true);
+            setAdminLoading(false);
+          }
+      })
+      .catch(() => {
+          if (isMounted) setAdminLoading(false);
+        });
+  } else {
+    setAdminLoading(false);
+  }
+
+ return () => {
+      isMounted = false;
+    };
+
+}, [user, axios]);
 
   if (loading || adminLoading) {
     return <div className="flex justify-center items-center h-screen">Loading...</div>;
@@ -31,7 +44,7 @@ const AdminRoute = ({ children }) => {
     return children;
   }
 
-  return <Navigate to="/login" state={{ from: location }} replace />;
+  return <Navigate to="/auth/login" state={{ from: location }} replace />;
 };
 
 export default AdminRoute;

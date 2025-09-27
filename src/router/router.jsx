@@ -20,6 +20,8 @@ import AdminHome from "../pages/AdminDashBoard/AdminHome";
 import ManageUsers from "../pages/AdminDashBoard/ManageUsers";
 import PremiumRequests from "../pages/AdminDashBoard/PremiumRequests";
 import AdminContact from "../pages/AdminDashBoard/AdminContact";
+import AdminDashBoard from "../layouts/AdminDashBoard";
+import Forbidden from "../pages/Forbidden";
 
 export const router = createBrowserRouter([
     {
@@ -42,6 +44,10 @@ export const router = createBrowserRouter([
                 path: "/contact",
                 element: <Contact></Contact>
             },
+            {
+                path: "/forbidden",
+                element: <Forbidden></Forbidden>
+            }
         ]
     },
     {
@@ -91,11 +97,11 @@ export const router = createBrowserRouter([
     {
         path: "/dashboard/admin",
         element: <AdminRoute>
-            <DashBoardLayout></DashBoardLayout>
+            <AdminDashBoard></AdminDashBoard>
         </AdminRoute>,
         children: [
             {
-                index: true,
+                path: "home",
                 element: <AdminHome></AdminHome>
             },
             {

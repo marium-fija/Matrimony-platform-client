@@ -6,13 +6,15 @@ import { FcGoogle } from "react-icons/fc";
 import useAxios from "../hooks/useAxios";
 
 const Register = () => {
+  const { register, handleSubmit, formState: { errors } } = useForm();
   const { registerUser, googleLogin } = useAuth();
    const axiosInstance = useAxios();
-    const location = useLocation();
+   const location = useLocation();
     const navigate = useNavigate();
     const from = location.state?.from || '/';
 
-  const { register, handleSubmit, formState: { errors } } = useForm();
+
+  
 
   const onSubmit = async (data) => {
     console.log("Form Data:", data);
@@ -30,6 +32,7 @@ const Register = () => {
       const userInfo = {
         name: data.name,
         email: data.email,
+        role: 'user',
         photoURL: data.photoURL,
         
       };

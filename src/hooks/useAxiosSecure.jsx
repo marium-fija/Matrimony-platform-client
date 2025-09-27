@@ -12,15 +12,12 @@ const useAxiosSecure = () => {
   });
 
   // Request interceptor
-  axiosSecure.interceptors.request.use(
-    (config) => {
-      if (user?.accessToken) {
-        config.headers.Authorization = `Bearer ${user.accessToken}`;
-      }
-      return config;
-    },
-    (error) => Promise.reject(error)
-  );
+  axiosSecure.interceptors.request.use(config => {
+  if(user?.accessToken) {
+    config.headers.Authorization = `Bearer ${user.accessToken}`;
+  }
+  return config;
+});
 
   // Response interceptor
   axiosSecure.interceptors.response.use(
@@ -31,7 +28,7 @@ const useAxiosSecure = () => {
         navigate('/forbidden');
       } else if (status === 401) {
         await logOut();
-        navigate('/login');
+        navigate('/auth/login');
       }
       return Promise.reject(error);
     }
