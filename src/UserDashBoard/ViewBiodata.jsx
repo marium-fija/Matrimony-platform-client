@@ -71,6 +71,21 @@ const ViewBiodata = () => {
     }
   };
 
+  // Send contact request
+const handleContactRequest = async () => {
+  try {
+    const res = await axios.patch(`/users/request-contact-by-email/${biodata.contactEmail}`);
+    if (res.data.modifiedCount > 0) {
+      Swal.fire("Success!", "Your contact request has been sent.", "success");
+    } else {
+      Swal.fire("Note!", "You already requested contact.", "info");
+    }
+  } catch (error) {
+    console.log(error);
+    Swal.fire("Error!", "Failed to send contact request.", "error");
+  }
+};
+
   if (loading) return <p className="text-center mt-10">Loading...</p>;
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
 
@@ -122,14 +137,15 @@ const ViewBiodata = () => {
              {/* Premium Button */}
             <button
             onClick={handlePremiumRequest} 
-            className="mt-3 px-6 py-2 bg-indigo-500 text-white rounded-xl shadow hover:bg-pink-400">
+            className="mt-3 px-6 py-2 bg-indigo-500 text-white rounded-xl shadow hover:bg-lime-500">
               Get Premium
             </button>
             <button
               onClick={() => toggleFavorite(biodata)}
               className={`p-3 rounded-full ${favorites.some(fav => fav.biodataId === biodata.biodataId) ? "bg-red-500" : "bg-transparent"}`}
             ><GoHeart size={25} className='text-white' /></button>
-            <button>Send Requrest</button>
+            <button onClick={handleContactRequest}
+             className="mt-3 px-6 py-2 bg-pink-500  text-white rounded-xl shadow hover:bg-emerald-500">Send Requrest</button>
            </div>
           </div>
         </div>
