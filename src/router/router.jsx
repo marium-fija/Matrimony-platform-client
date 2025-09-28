@@ -22,6 +22,7 @@ import PremiumRequests from "../pages/AdminDashBoard/PremiumRequests";
 import AdminContact from "../pages/AdminDashBoard/AdminContact";
 import AdminDashBoard from "../layouts/AdminDashBoard";
 import Forbidden from "../pages/Forbidden";
+import Checkout from "../pages/Checkout";
 
 export const router = createBrowserRouter([
     {
@@ -92,6 +93,10 @@ export const router = createBrowserRouter([
                  path: "got-married",
                  element: <GotMarried></GotMarried> 
             },
+            {
+                path: "/checkout/:biodataId",
+                element:<Checkout></Checkout>
+            }
         ]
     },
     {
