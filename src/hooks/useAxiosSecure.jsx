@@ -8,7 +8,7 @@ const useAxiosSecure = () => {
   const navigate = useNavigate();
 
   const axiosSecure = axios.create({
-    baseURL: 'https://matrimony-platform-server-lilac.vercel.app', 
+    baseURL: 'https://matrimony-platform-server-9xafyssk7-mariums-projects-1a2166bf.vercel.app', 
   });
 
   // Request interceptor
