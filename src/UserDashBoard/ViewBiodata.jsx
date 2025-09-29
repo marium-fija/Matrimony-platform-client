@@ -3,7 +3,7 @@ import { FaUser, FaIdBadge, FaVenusMars, FaInfoCircle, FaEnvelope, FaPhone, FaUs
 import { MdContactPhone, MdHeight, MdMonitorWeight } from "react-icons/md";
 import { GiBodyHeight } from "react-icons/gi";
 import useAxios from '../hooks/useAxios';
-import { useParams } from 'react-router';
+import { useNavigate, useParams } from 'react-router';
 import { GoHeart } from "react-icons/go";
 import { useAuth } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
@@ -14,6 +14,7 @@ const ViewBiodata = () => {
   console.log(email);
   const axios = useAxios();
   const { user } = useAuth();
+  const navigate = useNavigate();
   const [biodata, setBiodata] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
@@ -74,22 +75,28 @@ const ViewBiodata = () => {
   // Send contact request
 const handleContactRequest = async () => {
   try {
-    const res = await axios.patch(`/users/request-contact-by-email/${biodata.contactEmail}`);
-    if (res.data.modifiedCount > 0) {
-      Swal.fire("Success!", "Your contact request has been sent.", "success");
-    } else {
+    const existing = await axios.get(`/contactRequests/user/${user.email}`);
+    const alreadyRequested = existing.data.some(
+      req => req.contactEmail === biodata.contactEmail
+    );
+
+    if (alreadyRequested) {
       Swal.fire("Note!", "You already requested contact.", "info");
+      return;
     }
+
+    Swal.fire("Success!", "Your contact request has been sent", "success");
+
+    navigate(`/dashboard/checkout/${biodata?.biodataId}`);
   } catch (error) {
     console.log(error);
-    Swal.fire("Error!", "Failed to send contact request.", "error");
+    Swal.fire("Error!", "Failed to send contact request", "error");
   }
-};
 
   if (loading) return <p className="text-center mt-10">Loading...</p>;
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
 
-
+};
   return (
     <div>
       <div className="max-w-4xl mx-auto  rounded-2xl shadow-lg p-6 space-y-6">
@@ -142,7 +149,7 @@ const handleContactRequest = async () => {
             </button>
             <button
               onClick={() => toggleFavorite(biodata)}
-              className={`p-3 rounded-full ${favorites.some(fav => fav.biodataId === biodata.biodataId) ? "bg-red-500" : "bg-transparent"}`}
+              className={`p-3 rounded-full ${favorites?.some(fav => fav?.biodataId === biodata?.biodataId) ? "bg-red-500" : "bg-transparent"}`}
             ><GoHeart size={25} className='text-white' /></button>
             <button onClick={handleContactRequest}
              className="mt-3 px-6 py-2 bg-pink-500  text-white rounded-xl shadow hover:bg-emerald-500">Send Requrest</button>

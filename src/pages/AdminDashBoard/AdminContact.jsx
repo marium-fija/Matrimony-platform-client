@@ -2,7 +2,7 @@ import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
-import { MdOutlineContactPage } from 'react-icons/md';
+import { FcApproval } from "react-icons/fc";
 
 const AdminContact = () => {
      const axiosSecure = useAxiosSecure();
@@ -16,7 +16,9 @@ const AdminContact = () => {
       const usersWithBiodata = await Promise.all(
         res.data.map(async (user) => {
           try {
-            const biodataRes = await axiosSecure.get(`/biodatas/email/${user.email}`);
+            const biodataRes = await axiosSecure.get(`/biodatas/email/${user.contactEmail}`);
+            console.log(biodataRes);
+            
             return { ...user, biodataId: biodataRes.data.biodataId };
           } catch {
             return { ...user, biodataId: null };
@@ -74,17 +76,17 @@ const AdminContact = () => {
             {users.map((user) => (
               <tr key={user._id} className="text-center border-b">
                 <td className="py-2 px-4">{user.name}</td>
-                <td className="py-2 px-4">{user.email}</td>
-                <td className="py-2 px-4">{user.biodataId || "N/A"}</td>
-                <td className="py-2 px-4">
+                <td className="py-2 px-4">{user.contactEmail}</td>
+                <td className="py-2 px-4">{user.biodataId || ""}</td>
+                <td className="py-2 px-4 ">
                   {user.approvedContact ? (
                     <span className="text-green-600 font-semibold">Approved</span>
                   ) : (
                     <button
                       onClick={() => handleApproveContact(user._id)}
-                      className="bg-blue-500 text-white px-3 py-1 rounded hover:bg-blue-700 flex items-center justify-center gap-2"
+                      className="bg-transparent text-white border border-cyan-400 px-3 py-1 rounded hover:bg-slate-700 flex items-center justify-center gap-2"
                     >
-                      <MdOutlineContactPage size={20} /> Approve
+                      <FcApproval size={20} /> Approve
                     </button>
                   )}
                 </td>

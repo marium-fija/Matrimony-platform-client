@@ -11,7 +11,7 @@ import DashBoardLayout from "../layouts/DashBoardLayout";
 import UserHome from "../UserDashBoard/UserHome";
 import EditBiodata from "../UserDashBoard/EditBiodata";
 import ViewBiodata from "../UserDashBoard/ViewBiodata";
-import ContactRequest  from "../UserDashBoard/ContactRequest";
+import ContactRequest  from "../UserDashBoard/MyContactRequest";
 import FavouritesBiodata from "../UserDashBoard/FavouritesBiodata";
 import GotMarried from "../UserDashBoard/GotMarried";
 import PrivateRoute from "../provider/PrivateRoute";
@@ -94,7 +94,7 @@ export const router = createBrowserRouter([
                  element: <GotMarried></GotMarried> 
             },
             {
-                path: "/checkout/:biodataId",
+                path: "checkout/:biodataId",
                 element:<Checkout></Checkout>
             }
         ]
