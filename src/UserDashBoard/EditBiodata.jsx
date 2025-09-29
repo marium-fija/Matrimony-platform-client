@@ -2,10 +2,12 @@ import React, { useEffect, useState } from 'react';
 import useAxios from '../hooks/useAxios';
 import { useAuth } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import { Link, useNavigate } from 'react-router';
 
 const EditBiodata = () => {
     const {user} = useAuth();
      const axios = useAxios();
+     const navigate = useNavigate();
 
   const [formData, setFormData] = useState(
     {
@@ -80,6 +82,7 @@ useEffect(() => {
     }
 
     Swal.fire("Success", "Biodata saved successfully!", "success");
+    navigate(`/dashboard/view-biodata/email/${user.email}`)
   } catch (err) {
     console.error(err);
     Swal.fire("Error", err.message, "error");
@@ -97,7 +100,6 @@ useEffect(() => {
       <input value={formData.name} 
   onChange={handleChange}  type="text" name="name" className="w-full p-2 border rounded bg-transparent" />
     </div>
-
     {/* Profile Image */}
     <div>
       <label className="block mb-1">Profile Image URL</label>

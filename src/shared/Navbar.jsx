@@ -5,6 +5,7 @@ import { useAuth } from '../provider/AuthProvider';
 import { useState } from 'react';
 import Swal from 'sweetalert2';
 import useUserRole from '../hooks/useUserRole';
+import Loading from '../pages/Loading';
 
 
 const Navbar = () => {
@@ -13,7 +14,7 @@ const Navbar = () => {
      const [isOpen, setIsOpen] = useState(false);
 
       if (roleLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <Loading></Loading>;
   }
 
     const links =

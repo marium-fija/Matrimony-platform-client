@@ -3,10 +3,11 @@ import { FaUser, FaIdBadge, FaVenusMars, FaInfoCircle, FaEnvelope, FaPhone, FaUs
 import { MdContactPhone, MdHeight, MdMonitorWeight } from "react-icons/md";
 import { GiBodyHeight } from "react-icons/gi";
 import useAxios from '../hooks/useAxios';
-import { useNavigate, useParams } from 'react-router';
+import { Link, useNavigate, useParams } from 'react-router';
 import { GoHeart } from "react-icons/go";
 import { useAuth } from '../provider/AuthProvider';
 import Swal from 'sweetalert2';
+import Loading from '../pages/Loading';
 
 const ViewBiodata = () => {
 
@@ -93,13 +94,21 @@ const handleContactRequest = async () => {
     Swal.fire("Error!", "Failed to send contact request", "error");
   }
 
-  if (loading) return <p className="text-center mt-10">Loading...</p>;
+  if (loading) return <Loading></Loading>;
   if (error) return <p className="text-center mt-10 text-red-500">{error}</p>;
 
 };
   return (
     <div>
-      <div className="max-w-4xl mx-auto  rounded-2xl shadow-lg p-6 space-y-6">
+      <div className="text-center mt-20 bg-slate-700 p-4 rounded-2xl">
+        <p className="text-2xl font-semibold text-shadow-cyan-900 mb-4">
+          If you have no Biodata then create your biodata first.
+        </p>
+        <Link to="/dashboard/edit-biodata" className="px-6 py-2 bg-indigo-500 text-white rounded-xl hover:bg-indigo-700">
+          Create Biodata
+        </Link>
+      </div>
+      <div className="max-w-4xl mx-auto  rounded-2xl shadow-lg p-6 space-y-6 mt-10 bg-slate-800">
 
         {/* Top Section */}
         <div className="flex flex-col md:flex-row items-center gap-10">

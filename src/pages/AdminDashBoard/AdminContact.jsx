@@ -3,6 +3,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FcApproval } from "react-icons/fc";
+import Loading from '../Loading';
 
 const AdminContact = () => {
      const axiosSecure = useAxiosSecure();
@@ -52,9 +53,7 @@ const AdminContact = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold">Loading contact requests...</p>
-      </div>
+      <Loading></Loading>
     );
   }
     return (

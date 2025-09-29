@@ -2,6 +2,7 @@ import { Navigate, useLocation } from "react-router-dom";
 import { useAuth } from "../provider/AuthProvider"; 
 import { useEffect, useState } from "react";
 import useAxios from "../hooks/useAxios";
+import Loading from "../pages/Loading";
 
 
 
@@ -39,7 +40,7 @@ const AdminRoute = ({ children }) => {
 }, [user, axios]);
 
   if (authLoading || adminLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
+    return <Loading></Loading>;
   }
 
   if (user && isAdmin) {

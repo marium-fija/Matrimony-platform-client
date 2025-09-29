@@ -1,6 +1,7 @@
 import React from 'react';
 import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
+import Loading from '../Loading';
 
 const AdminHome = () => {
     const axiosSecure = useAxiosSecure();
@@ -16,9 +17,7 @@ const AdminHome = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold">Loading admin stats...</p>
-      </div>
+      <Loading></Loading>
     );
   }
     return (

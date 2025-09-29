@@ -8,6 +8,7 @@ import { IoIosContacts } from "react-icons/io";
 import Footer from '../shared/Footer';
 import Navbar from '../shared/Navbar';
 import useUserRole from '../hooks/useUserRole';
+import Loading from '../pages/Loading';
 
 const AdminDashBoard = () => {
      const { role, roleLoading } = useUserRole();
@@ -16,8 +17,8 @@ const AdminDashBoard = () => {
     const [isOpen, setIsOpen] = useState(false);
 
     if (roleLoading) {
-    return <div className="flex justify-center items-center h-screen">Loading...</div>;
-  }
+    return  <Loading></Loading>
+    }
 
   if (role !== "admin") {
     return <div className="flex justify-center items-center h-screen">

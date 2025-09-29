@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { NavLink, Outlet, useNavigate } from 'react-router';
 import Navbar from '../shared/Navbar';
 import Footer from '../shared/Footer';
-import { FaBars, FaHome, FaUserEdit, FaIdCard, FaPhone, FaHeart, FaRing, FaSignOutAlt, FaTimes } from "react-icons/fa";
+import { FaBars, FaHome, FaUserEdit, FaIdCard, FaPhone, FaHeart, FaSignOutAlt, FaTimes } from "react-icons/fa";
 import Swal from 'sweetalert2';
 import { useAuth } from '../provider/AuthProvider';
 
@@ -17,7 +17,7 @@ const DashBoardLayout = () => {
           Swal.fire(
             "Success", 
             "Log Out Successful !", "success");
-            navigate("/");
+            navigate("/auth/login");
         }
          catch (err) {
           Swal.fire("Error", err.message, "error");
@@ -57,7 +57,7 @@ const DashBoardLayout = () => {
           {/* Menu List */}
           <ul className="p-4 space-y-4">
             <li>
-              <NavLink to="/dashboard" onClick={() => setIsOpen(false)} className="flex items-center gap-2
+              <NavLink to="/dashboard/home" onClick={() => setIsOpen(false)} className="flex items-center gap-2
               ">
                 <FaHome /> User Home
               </NavLink>
@@ -84,12 +84,6 @@ const DashBoardLayout = () => {
               <NavLink to="/dashboard/favourites" onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
               }>
                 <FaHeart /> Favourites Biodata
-              </NavLink>
-            </li>
-            <li>
-              <NavLink to="/dashboard/got-married" onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
-              }>
-                <FaRing /> Got Married
               </NavLink>
             </li>
             <li>

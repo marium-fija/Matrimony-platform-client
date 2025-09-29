@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import useAxios from '../hooks/useAxios';
 import { Star, ChevronLeft, ChevronRight } from "lucide-react";
+import Loading from "../pages/Loading";
 
 const SuccessStories = () => {
   const axiosInstance = useAxios();
@@ -22,7 +23,8 @@ const SuccessStories = () => {
 
   if (stories.length === 0) {
     return (
-      <p className="text-center text-gray-500">Loading success stories...</p>
+      <Loading></Loading>
+      
     );
   }
 

@@ -3,6 +3,7 @@ import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { TbRosetteDiscountCheck } from 'react-icons/tb';
+import Loading from '../Loading';
 
 const PremiumRequests = () => {
     const axiosSecure = useAxiosSecure();
@@ -49,9 +50,7 @@ const PremiumRequests = () => {
 
   if (isLoading) {
     return (
-      <div className="flex justify-center items-center h-screen">
-        <p className="text-xl font-semibold">Loading premium requests...</p>
-      </div>
+      <Loading></Loading>
     );
   }
     return (
