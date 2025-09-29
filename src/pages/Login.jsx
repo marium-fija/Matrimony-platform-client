@@ -10,7 +10,7 @@ const Login = () => {
   const { loginUser, googleLogin } = useAuth();
   const location = useLocation();
     const navigate = useNavigate();
-    const from = location.state?.from || '/';
+    const from = location.state?.from || '/dashboard';
 
   
   const onSubmit = async (data) => {
