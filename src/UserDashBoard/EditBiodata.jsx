@@ -32,7 +32,7 @@ const EditBiodata = () => {
     about: "",
   }
 );
-console.log(formData);
+// console.log(formData);
 
 
 useEffect(() => {

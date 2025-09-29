@@ -13,7 +13,6 @@ import EditBiodata from "../UserDashBoard/EditBiodata";
 import ViewBiodata from "../UserDashBoard/ViewBiodata";
 import ContactRequest  from "../UserDashBoard/MyContactRequest";
 import FavouritesBiodata from "../UserDashBoard/FavouritesBiodata";
-import GotMarried from "../UserDashBoard/GotMarried";
 import PrivateRoute from "../provider/PrivateRoute";
 import AdminRoute from "../provider/AdminRoute";
 import AdminHome from "../pages/AdminDashBoard/AdminHome";
@@ -88,10 +87,6 @@ export const router = createBrowserRouter([
             {
                  path: "favourites", 
                  element: <FavouritesBiodata></FavouritesBiodata> 
-            },
-            {
-                 path: "got-married",
-                 element: <GotMarried></GotMarried> 
             },
             {
                 path: "checkout/:biodataId",
