@@ -1,22 +1,22 @@
 import React from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { TbRosetteDiscountCheck } from 'react-icons/tb';
 import Loading from '../Loading';
+import useAxios from '../../hooks/useAxios';
 
 const PremiumRequests = () => {
-    const axiosSecure = useAxiosSecure();
+    const axios = useAxios();
 
   // Fetch premium requests
   const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ['approvedPremium'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/approvedPremium');
+      const res = await axios.get('/approvedPremium');
       const usersWithBiodata = await Promise.all(
         res.data.map(async (user) => {
           try {
-            const biodataRes = await axiosSecure.get(`/biodatas/email/${user.email}`);
+            const biodataRes = await axios.get(`/biodatas/email/${user.email}`);
             return { ...user, biodataId: biodataRes.data.biodataId };
           } catch {
             return { ...user, biodataId: null };
@@ -37,7 +37,7 @@ const PremiumRequests = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosSecure.patch(`/approvedPremium/${id}`);
+          await axios.patch(`/approvedPremium/${id}`);
           Swal.fire("Success!", "User is now premium", "success");
           refetch();
         } catch (err) {

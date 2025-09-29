@@ -1,20 +1,20 @@
 import React, { useState } from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FaUserCheck } from "react-icons/fa";
 import { TbRosetteDiscountCheck } from "react-icons/tb";
 import Loading from '../Loading';
+import useAxios from '../../hooks/useAxios';
 
 const ManageUsers = () => {
-    const axiosSecure = useAxiosSecure();
+    const axios = useAxios();
   const [searchTerm, setSearchTerm] = useState("");
 
   // Fetch users with server-side search
   const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ["users", searchTerm],
     queryFn: async () => {
-      const res = await axiosSecure.get(`/users?search=${searchTerm}`);
+      const res = await axios.get(`/users?search=${searchTerm}`);
       return res.data;
     },
   });
@@ -29,7 +29,7 @@ const ManageUsers = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosSecure.patch(`/users/admin/${id}`);
+          await axios.patch(`/users/admin/${id}`);
           Swal.fire("Success!", "User is now an admin", "success");
           refetch();
         } catch (err) {
@@ -50,7 +50,7 @@ const ManageUsers = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosSecure.patch(`/approvedPremium/${id}`);
+          await axios.patch(`/approvedPremium/${id}`);
           Swal.fire("Success!", "User is now premium", "success");
           refetch();
         } catch (err) {

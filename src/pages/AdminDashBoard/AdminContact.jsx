@@ -1,23 +1,23 @@
 import React from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Swal from 'sweetalert2';
 import { FcApproval } from "react-icons/fc";
 import Loading from '../Loading';
+import useAxios from '../../hooks/useAxios';
 
 const AdminContact = () => {
-     const axiosSecure = useAxiosSecure();
+     const axios = useAxios();
 
   // Fetch all contact requests
   const { data: users = [], refetch, isLoading } = useQuery({
     queryKey: ['approvedContactRequest'],
     queryFn: async () => {
-      const res = await axiosSecure.get('/approvedContactRequest');
+      const res = await axios.get('/approvedContactRequest');
       // attach biodataId from biodata collection
       const usersWithBiodata = await Promise.all(
         res.data.map(async (user) => {
           try {
-            const biodataRes = await axiosSecure.get(`/biodatas/email/${user.contactEmail}`);
+            const biodataRes = await axios.get(`/biodatas/email/${user.contactEmail}`);
             console.log(biodataRes);
             
             return { ...user, biodataId: biodataRes.data.biodataId };
@@ -40,7 +40,7 @@ const AdminContact = () => {
     }).then(async (result) => {
       if (result.isConfirmed) {
         try {
-          await axiosSecure.patch(`/approvedContactRequest/${id}`);
+          await axios.patch(`/approvedContactRequest/${id}`);
           Swal.fire("Success!", "Contact request approved", "success");
           refetch();
         } catch (err) {

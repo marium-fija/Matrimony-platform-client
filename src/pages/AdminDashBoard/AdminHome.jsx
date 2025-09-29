@@ -1,16 +1,16 @@
 import React from 'react';
-import useAxiosSecure from '../../hooks/useAxiosSecure';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading';
+import useAxios from '../../hooks/useAxios';
 
 const AdminHome = () => {
-    const axiosSecure = useAxiosSecure();
+    const axios = useAxios();
 
   // Fetch admin stats
   const { data: stats = {}, isLoading, refetch } = useQuery({
     queryKey: ["adminStats"],
     queryFn: async () => {
-      const res = await axiosSecure.get("/admin/stats");
+      const res = await axios.get("/admin/stats");
       return res.data;
     },
   });
