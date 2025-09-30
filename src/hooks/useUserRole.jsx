@@ -11,7 +11,10 @@ const useUserRole = () => {
     queryKey: ['userRole', user?.email],
     enabled: !authLoading && !!user?.email,
     queryFn: async () => {
-      const res = await axios.get(`/users/${user.email}/role`); 
+       const res = await axios.get(`/users/${user.email}/role`, {
+        headers: { 'Cache-Control': 'no-cache' }
+      });
+        console.log("Role fetched from server:", res.data.role);
       return res.data.role;
     },
   });
