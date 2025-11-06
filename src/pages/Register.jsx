@@ -76,9 +76,9 @@ const Register = () => {
 
         
 
-        <button type="submit" className=" bg-cyan-700 p-2 rounded-full w-full">Register</button>
+        <button type="submit" className=" bg-indigo-400 p-2 rounded-full w-full">Register</button>
 
-        <button onClick={handleGoogleLogin} className="p-2 rounded-xl bg-purple-400 w-full mt-3 flex justify-center gap-2 items-center"><FcGoogle size={20}/> Login with Google</button>
+        <button onClick={handleGoogleLogin} className="p-2 rounded-full bg-purple-400 w-full mt-3 flex justify-center gap-2 items-center"><FcGoogle size={20}/> Login with Google</button>
       </form>
       <p className="mt-3 text-center">Already have an account? <Link to="/auth/login" className="text-blue-600">Login</Link></p>
     </div>

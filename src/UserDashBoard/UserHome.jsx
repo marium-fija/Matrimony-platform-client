@@ -1,6 +1,7 @@
 import React from 'react';
 import { useAuth } from '../provider/AuthProvider';
-import userHomeImg from '../assets/UserHome.png';
+import userHomeImg from '../assets/Img/UserHome.png';
+import OverviewPage from '../pages/OverviewPage';
 
 const UserHome = () => {
     const {user} = useAuth();

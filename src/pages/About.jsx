@@ -1,15 +1,15 @@
 import React from 'react';
-import about from '../assets/About.jpeg'
+import about from '../assets/Img/About.jpeg'
 
 const About = () => {
     return (
-        <div className='max-w-7xl mx-auto'>
-            <div className='mt-10'>
+        <div className=''>
+            <div className='mt-30'>
                 <h2 className='text-5xl text-center font-bold mb-8'> About <span className='text-sky-500'>Soul</span><span className='text-pink-500'>Knot</span></h2>
             <p className='text-center text-gray-500 mb-8'>Finding partner , Connecting hearts ,ways to stay  together forever</p>
             <img className='w-[1024px] p-3 mx-auto' src={about} alt="" />
 
-            <div className='mt-10 w-full px-10 space-y-5 justify-center text-gray-300'>
+            <div className='mt-10 w-full mx-auto px-10 space-y-5 text-center  text-gray-300'>
                <p> Matrimony Platform is a modern and user-friendly web application built with the MERN stack that helps people find their perfect life partner. Our mission is to create a safe, reliable, and transparent platform where users can connect with genuine biodatas.</p>
 
                 <p>In this platform, users can create and manage their own biodata with complete details such as personal information, occupation, family background, and partner expectations. The system allows easy browsing of biodatas with smart filters for age, gender, and location.</p>

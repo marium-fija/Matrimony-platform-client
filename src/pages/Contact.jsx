@@ -5,7 +5,9 @@ import { FiSend, FiTwitter } from "react-icons/fi";
 
 const Contact = () => {
     return (
-        <div className='max-w-7xl mx-auto my-14'>
+      <div className='max-w-7xl mx-auto mt-30'>
+
+        <div className='my-14'>
             <h2 className='text-5xl font-extrabold text-center'>Here to <span className='text-cyan-400'>Contact</span> With Us ...</h2>
             <div className='grid sm:grid-cols-2 lg: grid-cols-1 gap-8'> 
             {/* form */}
@@ -32,13 +34,13 @@ const Contact = () => {
     <textarea placeholder='Your message'  name="about" rows="3" className="w-full p-2 border rounded bg-transparent"></textarea>
   </div>
 
-  <button type="submit" className="mt-4 bg-indigo-500 px-6 py-2 rounded-xl text-white font-bold">
+  <button type="submit" className="mt-4 bg-indigo-500 px-6 py-2 rounded-full text-white font-bold">
     Send
   </button>
         </div>
             {/* text */}
             <div className='p-10'>
-        <h2 className='text-4xl font-extrabold '><span className='text-purple-400'>Join to</span> our Group</h2>
+        <h2 className='text-4xl font-extrabold '><span className='text-cyan-500'>Join to</span> our Group</h2>
         <p className='justify-items-start text-gray-500 my-5'>Are you finding your partner ? Then you can join to our social media groups . Here you can find your perfect match  </p>
 
         <div className='flex flex-col '>
@@ -71,6 +73,8 @@ const Contact = () => {
     </div>
             </div>
     </div>
+        </div>
+
         </div>
     );
 };

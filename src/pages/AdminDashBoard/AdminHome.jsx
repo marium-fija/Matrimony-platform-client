@@ -2,6 +2,7 @@ import React from 'react';
 import { useQuery } from '@tanstack/react-query';
 import Loading from '../Loading';
 import useAxios from '../../hooks/useAxios';
+import OverviewPage from '../OverviewPage';
 
 const AdminHome = () => {
     const axios = useAxios();
@@ -51,6 +52,8 @@ const AdminHome = () => {
           <p className="text-2xl font-bold">${stats.revenue}</p>
         </div>
       </div>
+
+      <OverviewPage></OverviewPage>
     </div> 
         </div>
     );

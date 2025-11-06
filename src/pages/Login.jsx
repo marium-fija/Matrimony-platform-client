@@ -2,7 +2,7 @@ import { useForm } from "react-hook-form";
 import Swal from "sweetalert2";
 import { useAuth } from "../provider/AuthProvider";
 import { Link, useLocation, useNavigate } from "react-router-dom";
-import login from '../assets/login.jpg';
+import login from '../assets/Img/login.jpg';
 import { FcGoogle } from "react-icons/fc";
 
 const Login = () => {
@@ -49,9 +49,9 @@ const Login = () => {
         <input {...register("password", { required: true })} type="password" placeholder="Password" className="input input-bordered bg-gray-800 w-full border rounded-2xl p-3" />
         {errors.password && <p className="text-red-500">Password is required</p>}
 
-        <button type="submit" className=" bg-indigo-400 p-2 rounded-xl w-full">Login</button>
+        <button type="submit" className=" bg-indigo-400 p-2 rounded-full w-full">Login</button>
      
-      <button onClick={handleGoogleLogin} className="p-2 rounded-xl bg-purple-400 w-full mt-3 flex justify-center gap-2 items-center"><FcGoogle size={20}/> Login with Google</button>
+      <button onClick={handleGoogleLogin} className="p-2 rounded-full bg-purple-400 w-full mt-3 flex justify-center gap-2 items-center"><FcGoogle size={20}/> Login with Google</button>
        </form>
       <p className="mt-3 text-center">Don't have an account? <Link to="/auth/register" className="text-blue-600">Register</Link></p>
     </div>

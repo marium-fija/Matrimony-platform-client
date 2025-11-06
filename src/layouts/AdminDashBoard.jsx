@@ -9,6 +9,7 @@ import Footer from '../shared/Footer';
 import Navbar from '../shared/Navbar';
 import useUserRole from '../hooks/useUserRole';
 import Loading from '../pages/Loading';
+import { FaUserShield } from "react-icons/fa";
 
 const AdminDashBoard = () => {
      const { role, roleLoading } = useUserRole();
@@ -47,7 +48,7 @@ const AdminDashBoard = () => {
         <div>
            <div>
             <Navbar></Navbar>
-           <div className="flex flex-col min-h-screen">
+           <div className="mt-20 flex flex-col min-h-screen">
       {/* === Menu Button for Mobile === */}
       <div className="md:hidden bg-slate-800 text-white flex items-center px-4 py-3">
         <button onClick={toggleDrawer} className="text-2xl">
@@ -60,7 +61,8 @@ const AdminDashBoard = () => {
         {/* === Sidebar Drawer === */}
         <div
           className={`fixed top-0 left-0 min-h-screen pt-10 w-64 bg-cyan-950 text-white transform transition-transform duration-300 z-50
-          ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 md:static`}
+          ${isOpen ? "translate-x-0" : "-translate-x-full"} md:translate-x-0 fixed md:sticky top-0 md:top-20 left-0 h-screen md:h-[calc(100vh-80px)] 
+  w-64 bg-cyan-950 text-white transform transition-transform duration-300 z-50`}
         >
           {/* Header with Cross Button */}
           <div className="flex items-center justify-between p-4 border-b border-teal-700">
@@ -94,6 +96,12 @@ const AdminDashBoard = () => {
               <NavLink to="/dashboard/admin/contact" onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
               }>
                 <IoIosContacts /> Contact Request
+              </NavLink>
+            </li>
+            <li>
+              <NavLink to="/dashboard/admin/profile" onClick={() => setIsOpen(false)} className={({isActive}) => `flex items-center gap-2 p-2 ${isActive ? "border border-sky-400 rounded-xl text-white" : "text-gray-300 hover:text-cyan-400"}`
+              }>
+                <FaUserShield /> Profile
               </NavLink>
             </li>
             

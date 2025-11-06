@@ -22,6 +22,8 @@ import AdminContact from "../pages/AdminDashBoard/AdminContact";
 import AdminDashBoard from "../layouts/AdminDashBoard";
 import Forbidden from "../pages/Forbidden";
 import Checkout from "../pages/Checkout";
+import Profile from "../pages/Profile";
+import OverviewPage from "../pages/OverviewPage";
 
 export const router = createBrowserRouter([
     {
@@ -89,8 +91,16 @@ export const router = createBrowserRouter([
                  element: <FavouritesBiodata></FavouritesBiodata> 
             },
             {
+                path: "overview",
+                element: <OverviewPage></OverviewPage>
+            },
+            {
                 path: "checkout/:biodataId",
                 element:<Checkout></Checkout>
+            },
+            {
+                path: "profile",
+                element: <Profile></Profile>
             }
         ]
     },
@@ -115,6 +125,10 @@ export const router = createBrowserRouter([
             {
                 path: "contact",
                 element: <AdminContact></AdminContact>
+            },
+            {
+                path: "profile",
+                element: <Profile></Profile>
             }
         ]
     },

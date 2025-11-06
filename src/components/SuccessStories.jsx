@@ -61,9 +61,9 @@ const SuccessStories = () => {
 
     return (
         <div>
-          <section className="py-12 bg-gray-900">
-      <div className="max-w-6xl mx-auto px-6">
-        <h2 className="text-3xl font-bold text-center text-white mb-10">
+          <section className="py-12 bg-gray-900 rounded-2xl ">
+      <div className="px-6">
+        <h2 className="text-3xl font-bold text-center text-cyan-500 mb-10">
           Success Stories
         </h2>
 

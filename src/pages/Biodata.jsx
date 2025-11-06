@@ -87,7 +87,7 @@ const toggleFavorite = (biodata) => {
 };
 
     return (
-        <div>
+        <div className='mt-20'>
             <div className="flex flex-col md:flex-row p-6 gap-6">
       {/* Left Filter */}
       <div className="w-full sm:w-1/6 md:w-1/4 bg-blue-950 text-white p-6 rounded-xl shadow-lg space-y-4">
@@ -179,7 +179,7 @@ const toggleFavorite = (biodata) => {
              <div className='flex justify-between px-4'>
                 <button
                onClick={() => handleViewProfile(biodata.contactEmail)}
-              className="mt-3 bg-indigo-500 hover:bg-pink-400 text-white px-4 py-2 rounded-2xl"
+              className="mt-3 bg-indigo-500 hover:bg-pink-400 text-white px-4 py-2 rounded-full"
             >
               View Profile
             </button>

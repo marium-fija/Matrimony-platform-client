@@ -26,10 +26,10 @@ const HowItWorks = () => {
   ];
     return (
         <div>
-            <section className="py-16 bg-gray-800 rounded-2xl">
-      <div className="max-w-7xl mx-auto px-6 text-center">
-        <h2 className="text-3xl md:text-4xl font-bold mb-12">
-          How It <span className="text-pink-600">Works</span>
+            <section className="py-12 w-full bg-gray-800 rounded-2xl">
+      <div className=" px-6 text-center">
+        <h2 className="text-3xl md:text-4xl font-bold mb-12 text-cyan-500">
+          How It Works
         </h2>
 
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
