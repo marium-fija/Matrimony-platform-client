@@ -1,5 +1,5 @@
 import React from 'react';
-import Logo from '../assets/Img/hand.png';
+import Logo from '../assets/Img/wedding_14024580.png';
 import { FaFacebook } from "react-icons/fa";
 import { FiTwitter } from "react-icons/fi";
 import { FaInstagram } from "react-icons/fa";
@@ -15,7 +15,7 @@ const Footer = () => {
         {/* Logo & Description */}
         <div className="mb-8 md:mb-0 md:w-1/3">
           <div className="flex items-center gap-2 text-2xl font-bold ">
-                   <img className='w-12 rounded-2xl' src={Logo} alt="" /> 
+                   <img className="w-12 rounded-full bg-slate-100 p-2" src={Logo} alt="" /> 
                     <h3><span className=''>Soul</span><span className='text-cyan-400'>Knot</span></h3>
                   </div>
           <p className="text-gray-200">
